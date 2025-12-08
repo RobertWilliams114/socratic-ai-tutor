@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+
+# Data - Keep data/ for TA review, only ignore large files
+data/**/*.html
+data/**/*.graphml
+data/**/vdb_chunks.json
+*.db
+*.sqlite
+
+# Ignore very large raw files
+data/raw/**/*.mp4
+data/raw/**/*.avi
+data/raw/**/*.mov
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS
+.DS_Store
+Thumbs.db
+._*
+
+# Logs
+*.log
+logs/

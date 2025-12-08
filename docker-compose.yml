@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Ollama LLM Server
+  ollama:
+    image: ollama/ollama:latest
+    container_name: erica-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_MODELS=/root/.ollama/models
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  # Python development environment
+  erica-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: erica-dev
+    volumes:
+      - .:/workspace
+      - ~/.cache:/root/.cache
+    working_dir: /workspace
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    depends_on:
+      - ollama
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  ollama_data:
