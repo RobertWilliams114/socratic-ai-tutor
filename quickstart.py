@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Quick start script for Erica AI Tutor."""
+"""Quick start script for Socratic AI Tutor."""
 
 import sys
 from pathlib import Path
@@ -29,7 +29,7 @@ def main():
     """Run quick start setup."""
     console.print(
         Panel.fit(
-            "[bold cyan]Erica AI Tutor - Quick Start[/bold cyan]\n"
+            "[bold cyan]Socratic AI Tutor - Quick Start[/bold cyan]\n"
             "This script will help you set up your environment.",
             border_style="cyan",
         )
@@ -64,7 +64,7 @@ def main():
     # Test LLM connection
     console.print("\n[bold]Step 3:[/bold] Testing LLM connection...")
     try:
-        from erica.utils.llm_client import llm_client
+        from socratic.utils.llm_client import llm_client
 
         response = llm_client.generate(
             "Say 'Hello!' in one word.", temperature=0.1, max_tokens=10
@@ -77,14 +77,14 @@ def main():
     # Check for data
     console.print("\n[bold]Step 4:[/bold] Checking for data...")
     data_dir = Path("data")
-    kg_file = data_dir / "hybrid_graph" / "erica_metadata.json"
+    kg_file = data_dir / "hybrid_graph" / "socratic_metadata.json"
 
     if kg_file.exists():
         console.print(f"  ✅ Hybrid knowledge graph found: {kg_file}")
 
         if Confirm.ask("\n[cyan]Start chat interface?[/cyan]"):
-            console.print("\n[green]Starting Erica...[/green]\n")
-            from erica.main import main as run_chat
+            console.print("\n[green]Starting Socratic...[/green]\n")
+            from socratic.main import main as run_chat
 
             run_chat()
     else:

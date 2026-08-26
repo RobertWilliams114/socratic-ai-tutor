@@ -4,9 +4,9 @@ import json
 import logging
 from typing import Any
 
-from erica.graph.storage import GraphStorage
-from erica.models import KnowledgeGraph
-from erica.utils.llm_client import llm_client
+from socratic.graph.storage import GraphStorage
+from socratic.models import KnowledgeGraph
+from socratic.utils.llm_client import llm_client
 
 logger = logging.getLogger(__name__)
 
@@ -162,7 +162,7 @@ If none are relevant, return: []"""
         Returns:
             Dictionary containing answer, concepts used, and resource citations
         """
-        system_prompt = """You are Erica, an AI tutor for an Introduction to AI course.
+        system_prompt = """You are Socratic, an AI tutor for an Introduction to AI course.
 Your role is to help students learn by:
 1. Starting with prerequisite concepts if needed
 2. Building up to the main concepts in order of difficulty

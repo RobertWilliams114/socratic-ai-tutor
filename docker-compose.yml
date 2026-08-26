@@ -4,7 +4,7 @@ services:
   # Ollama LLM Server
   ollama:
     image: ollama/ollama:latest
-    container_name: erica-ollama
+    container_name: socratic-ollama
     ports:
       - "11434:11434"
     volumes:
@@ -21,11 +21,11 @@ services:
               capabilities: [gpu]
 
   # Python development environment
-  erica-dev:
+  socratic-dev:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: erica-dev
+    container_name: socratic-dev
     volumes:
       - .:/workspace
       - ~/.cache:/root/.cache

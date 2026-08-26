@@ -3,10 +3,10 @@
 import logging
 from pathlib import Path
 
-from erica.config import settings
-from erica.graph.builder import KnowledgeGraphBuilder
-from erica.graph.nano_graphrag_wrapper import NanoGraphRAGWrapper
-from erica.models import KnowledgeGraph, Resource
+from socratic.config import settings
+from socratic.graph.builder import KnowledgeGraphBuilder
+from socratic.graph.nano_graphrag_wrapper import NanoGraphRAGWrapper
+from socratic.models import KnowledgeGraph, Resource
 
 logger = logging.getLogger(__name__)
 
@@ -39,7 +39,7 @@ class HybridKnowledgeGraphBuilder:
 
         ## Step 2: Build custom graph for concepts, examples, and relationships
         ## This extracts educational concepts, prerequisites, examples using LLM prompts
-        ## Stored in erica_metadata.json for our custom logic
+        ## Stored in socratic_metadata.json for our custom logic
         logger.info("Step 2: Building custom concept graph...")
         kg = self.custom_builder.build_from_resources(resources)
 

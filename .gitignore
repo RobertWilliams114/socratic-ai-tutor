@@ -15,17 +15,22 @@ build/
 .env
 .env.local
 
-# Data - Keep data/ for TA review, only ignore large files
+# Scraped course material — DO NOT republish (not yours to redistribute)
+data/raw/
+data/processed/
+
+# Regenerable build artifacts (rebuild via notebooks 01 + 02)
+data/nano_graphrag/
+data/hybrid_graph/
 data/**/*.html
 data/**/*.graphml
 data/**/vdb_chunks.json
 *.db
 *.sqlite
 
-# Ignore very large raw files
-data/raw/**/*.mp4
-data/raw/**/*.avi
-data/raw/**/*.mov
+# Deliberately KEPT (small, and they are the demo evidence):
+#   data/graph/knowledge_graph.json  — the built concept graph
+#   data/evaluation/*.json           — the three evaluation query results
 
 # IDE
 .vscode/

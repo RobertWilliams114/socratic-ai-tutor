@@ -1,0 +1,649 @@
+{
+  "concepts": {
+    "artificial_intelligence": {
+      "id": "artificial_intelligence",
+      "title": "Artificial Intelligence",
+      "difficulty": 4,
+      "aliases": [
+        "AI"
+      ],
+      "definitions": [
+        "The study and development of computer systems that can perform tasks requiring human-like intelligence, such as perception, learning, reasoning, and problem-solving."
+      ],
+      "metadata": {}
+    },
+    "machine_learning": {
+      "id": "machine_learning",
+      "title": "Machine Learning",
+      "difficulty": 3,
+      "aliases": [
+        "ML"
+      ],
+      "definitions": [
+        "A subset of AI focused on developing algorithms that enable computer systems to improve their performance in a specific task through experience or data analysis."
+      ],
+      "metadata": {}
+    },
+    "natural_language_processing": {
+      "id": "natural_language_processing",
+      "title": "Natural Language Processing",
+      "difficulty": 3,
+      "aliases": [
+        "NLP"
+      ],
+      "definitions": [
+        "A branch of AI concerned with the interaction between computers and human (natural) languages, involving tasks such as language translation, text summarization, and sentiment analysis."
+      ],
+      "metadata": {}
+    },
+    "reinforcement_learning": {
+      "id": "reinforcement_learning",
+      "title": "Reinforcement Learning (RL)",
+      "difficulty": 4,
+      "aliases": [],
+      "definitions": [
+        "A type of machine learning where an agent learns to make decisions by performing actions and receiving rewards or penalties"
+      ],
+      "metadata": {}
+    },
+    "ai_agents": {
+      "id": "ai_agents",
+      "title": "AI Agents",
+      "difficulty": 4,
+      "aliases": [],
+      "definitions": [
+        "Entities capable of perceptive and language understanding abilities, engineered using various AI techniques"
+      ],
+      "metadata": {}
+    },
+    "perception_systems": {
+      "id": "perception_systems",
+      "title": "Perception Systems",
+      "difficulty": 3,
+      "aliases": [
+        "2d-perception",
+        "Scene Understanding"
+      ],
+      "definitions": [
+        "Subsystems for real-time perception and understanding of the environment, including semantic segmentation"
+      ],
+      "metadata": {}
+    },
+    "language_models": {
+      "id": "language_models",
+      "title": "Language Models",
+      "difficulty": 3,
+      "aliases": [
+        "LLMs",
+        "Large Language Models"
+      ],
+      "definitions": [
+        "Models designed for natural language processing tasks, capable of generating human-like text"
+      ],
+      "metadata": {}
+    },
+    "learning_problem": {
+      "id": "learning_problem",
+      "title": "Learning Problem",
+      "difficulty": 4,
+      "aliases": [],
+      "definitions": [
+        "The process of training a model to make predictions or decisions based on input data."
+      ],
+      "metadata": {}
+    },
+    "statistical_learning_theory": {
+      "id": "statistical_learning_theory",
+      "title": "Statistical Learning Theory",
+      "difficulty": 5,
+      "aliases": [],
+      "definitions": [
+        "A framework for understanding the principles and methods used in machine learning, focusing on the relationship between training data and model performance."
+      ],
+      "metadata": {}
+    },
+    "optimization_algorithms": {
+      "id": "optimization_algorithms",
+      "title": "Optimization Algorithms",
+      "difficulty": 4,
+      "aliases": [],
+      "definitions": [
+        "Algorithms designed to find the optimal solution or a near-optimal solution in the weight space for training machine learning models."
+      ],
+      "metadata": {}
+    },
+    "maximum_likelihood_estimation": {
+      "id": "maximum_likelihood_estimation",
+      "title": "Maximum Likelihood Estimation",
+      "difficulty": 4,
+      "aliases": [],
+      "definitions": [
+        "A method used to estimate the parameters of a statistical model by maximizing the likelihood function, often applied in Gaussian parameter estimation."
+      ],
+      "metadata": {}
+    },
+    "logistic_regression": {
+      "id": "logistic_regression",
+      "title": "Logistic Regression",
+      "difficulty": 3,
+      "aliases": [
+        "LR"
+      ],
+      "definitions": [
+        "A type of regression analysis used for predicting binary outcomes or probabilities by fitting data to a logistic function."
+      ],
+      "metadata": {}
+    },
+    "backpropagation": {
+      "id": "backpropagation",
+      "title": "Backpropagation",
+      "difficulty": 4,
+      "aliases": [],
+      "definitions": [
+        "A procedure used in training deep neural networks that involves the repetitive application of the chain rule to compute gradients."
+      ],
+      "metadata": {}
+    },
+    "deep_neural_networks": {
+      "id": "deep_neural_networks",
+      "title": "Deep Neural Networks (DNNs)",
+      "difficulty": 3,
+      "aliases": [
+        "DNN"
+      ],
+      "definitions": [
+        "Implementations of connectionism, which involve algorithms that perform function approximations through an interconnection of nodes."
+      ],
+      "metadata": {}
+    },
+    "data_preprocessing": {
+      "id": "data_preprocessing",
+      "title": "Data Preprocessing",
+      "difficulty": 2,
+      "aliases": [],
+      "definitions": [
+        "The process of preparing raw data for use in machine learning models, often involving normalization and transformation."
+      ],
+      "metadata": {}
+    },
+    "cnn_architectures": {
+      "id": "cnn_architectures",
+      "title": "CNN Example Architectures",
+      "difficulty": 4,
+      "aliases": [],
+      "definitions": [
+        "Examples of Convolutional Neural Network (CNN) structures used in image processing"
+      ],
+      "metadata": {}
+    },
+    "convolutional_layers": {
+      "id": "convolutional_layers",
+      "title": "CNN Layers",
+      "difficulty": 3,
+      "aliases": [],
+      "definitions": [
+        "Layers within CNNs that process 3D images to extract features based on spatial dimensions and color channels"
+      ],
+      "metadata": {}
+    },
+    "faster_rcnn": {
+      "id": "faster_rcnn",
+      "title": "Faster RCNN Object Detection",
+      "difficulty": 4,
+      "aliases": [
+        "Region-based Detector"
+      ],
+      "definitions": [
+        "A third generation object detection algorithm that replaces the selective search algorithm for more efficient computation"
+      ],
+      "metadata": {}
+    },
+    "residual_networks": {
+      "id": "residual_networks",
+      "title": "Feature Extraction via Residual Networks",
+      "difficulty": 3,
+      "aliases": [
+        "ResNet"
+      ],
+      "definitions": [
+        "Architectures that introduce residual connections to improve performance in deep learning models, particularly in CNNs"
+      ],
+      "metadata": {}
+    },
+    "mask_rcnn": {
+      "id": "mask_rcnn",
+      "title": "Mask R-CNN Semantic Segmentation",
+      "difficulty": 4,
+      "aliases": [],
+      "definitions": [
+        "An extension of Faster R-CNN that adds a mask head for semantic segmentation tasks"
+      ],
+      "metadata": {}
+    }
+  },
+  "resources": {
+    "web_5279553432030179324": {
+      "id": "web_5279553432030179324",
+      "type": "web",
+      "url": "https://pantelis.github.io/courses/ai/in-person.html",
+      "title": "Introduction to Artificial Intelligence \u2013 Engineering AI Agents",
+      "span": null,
+      "timecodes": []
+    },
+    "web_4432039879397545034": {
+      "id": "web_4432039879397545034",
+      "type": "web",
+      "url": "https://pantelis.github.io/index.html",
+      "title": "Back2classroom \u2013 Engineering AI Agents",
+      "span": null,
+      "timecodes": []
+    },
+    "web_3255503325439715244": {
+      "id": "web_3255503325439715244",
+      "type": "web",
+      "url": "https://pantelis.github.io/book/foundations/index.html",
+      "title": "Foundations \u2013 Engineering AI Agents",
+      "span": null,
+      "timecodes": []
+    },
+    "web_612956516403586895": {
+      "id": "web_612956516403586895",
+      "type": "web",
+      "url": "https://pantelis.github.io/book/dnn/index.html",
+      "title": "Training Deep Neural Networks \u2013 Engineering AI Agents",
+      "span": null,
+      "timecodes": []
+    },
+    "web_1840686416331352995": {
+      "id": "web_1840686416331352995",
+      "type": "web",
+      "url": "https://pantelis.github.io/book/2d-perception/index.html",
+      "title": "2D Perception \u2013 Engineering AI Agents",
+      "span": null,
+      "timecodes": []
+    }
+  },
+  "examples": {
+    "mask_rcnn_inference": {
+      "id": "mask_rcnn_inference",
+      "title": "Mask R-CNN Inference",
+      "content": "import torch\nfrom torchvision import datasets, transforms, models, ops, io\nfrom torchvision.models.detection.mask_rcnn import MaskRCNNPredictor",
+      "code_snippet": null,
+      "language": "python",
+      "metadata": {}
+    }
+  },
+  "edges": [
+    {
+      "source_id": "web_5279553432030179324",
+      "target_id": "artificial_intelligence",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_5279553432030179324",
+      "target_id": "machine_learning",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_5279553432030179324",
+      "target_id": "natural_language_processing",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_5279553432030179324",
+      "target_id": "reinforcement_learning",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "artificial_intelligence",
+      "target_id": "machine_learning",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "artificial_intelligence",
+      "target_id": "natural_language_processing",
+      "relation_type": "part_of",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "artificial_intelligence",
+      "target_id": "reinforcement_learning",
+      "relation_type": "part_of",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "machine_learning",
+      "target_id": "natural_language_processing",
+      "relation_type": "prereq_of",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "machine_learning",
+      "target_id": "reinforcement_learning",
+      "relation_type": "prereq_of",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_4432039879397545034",
+      "target_id": "ai_agents",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_4432039879397545034",
+      "target_id": "perception_systems",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_4432039879397545034",
+      "target_id": "reinforcement_learning",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_4432039879397545034",
+      "target_id": "language_models",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "perception_systems",
+      "target_id": "ai_agents",
+      "relation_type": "part_of",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "reinforcement_learning",
+      "target_id": "ai_agents",
+      "relation_type": "prereq_of",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "language_models",
+      "target_id": "ai_agents",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_3255503325439715244",
+      "target_id": "learning_problem",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_3255503325439715244",
+      "target_id": "statistical_learning_theory",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_3255503325439715244",
+      "target_id": "optimization_algorithms",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_3255503325439715244",
+      "target_id": "maximum_likelihood_estimation",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_3255503325439715244",
+      "target_id": "logistic_regression",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "statistical_learning_theory",
+      "target_id": "learning_problem",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "maximum_likelihood_estimation",
+      "target_id": "logistic_regression",
+      "relation_type": "part_of",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "optimization_algorithms",
+      "target_id": "logistic_regression",
+      "relation_type": "prereq_of",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_612956516403586895",
+      "target_id": "backpropagation",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_612956516403586895",
+      "target_id": "deep_neural_networks",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_612956516403586895",
+      "target_id": "data_preprocessing",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "data_preprocessing",
+      "target_id": "deep_neural_networks",
+      "relation_type": "part_of",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "backpropagation",
+      "target_id": "deep_neural_networks",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_1840686416331352995",
+      "target_id": "cnn_architectures",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_1840686416331352995",
+      "target_id": "convolutional_layers",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_1840686416331352995",
+      "target_id": "faster_rcnn",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_1840686416331352995",
+      "target_id": "residual_networks",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "web_1840686416331352995",
+      "target_id": "mask_rcnn",
+      "relation_type": "explains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "convolutional_layers",
+      "target_id": "cnn_architectures",
+      "relation_type": "part_of",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "residual_networks",
+      "target_id": "cnn_architectures",
+      "relation_type": "part_of",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "faster_rcnn",
+      "target_id": "cnn_architectures",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "mask_rcnn",
+      "target_id": "cnn_architectures",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "artificial_intelligence",
+      "target_id": "machine_learning",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "artificial_intelligence",
+      "target_id": "perception_systems",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "machine_learning",
+      "target_id": "deep_neural_networks",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "machine_learning",
+      "target_id": "learning_problem",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "machine_learning",
+      "target_id": "logistic_regression",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "data_preprocessing",
+      "target_id": "machine_learning",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "optimization_algorithms",
+      "target_id": "machine_learning",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "optimization_algorithms",
+      "target_id": "backpropagation",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "statistical_learning_theory",
+      "target_id": "learning_problem",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "maximum_likelihood_estimation",
+      "target_id": "logistic_regression",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "machine_learning",
+      "target_id": "backpropagation",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "backpropagation",
+      "target_id": "deep_neural_networks",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "deep_neural_networks",
+      "target_id": "cnn_architectures",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "deep_neural_networks",
+      "target_id": "convolutional_layers",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "convolutional_layers",
+      "target_id": "cnn_architectures",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "cnn_architectures",
+      "target_id": "residual_networks",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "cnn_architectures",
+      "target_id": "faster_rcnn",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "residual_networks",
+      "target_id": "faster_rcnn",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "faster_rcnn",
+      "target_id": "mask_rcnn",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "natural_language_processing",
+      "target_id": "language_models",
+      "relation_type": "prereq_of"
+    },
+    {
+      "source_id": "perception_systems",
+      "target_id": "ai_agents",
+      "relation_type": "prereq_of"
+    }
+  ]
+}

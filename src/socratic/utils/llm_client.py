@@ -4,7 +4,7 @@ from typing import Any
 
 from openai import OpenAI
 
-from erica.config import settings
+from socratic.config import settings
 
 ## Client for interacting with LLM providers.
 class LLMClient:

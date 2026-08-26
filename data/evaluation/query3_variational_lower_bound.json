@@ -1,0 +1,22 @@
+{
+  "query": "Explain the variational lower bound and its connection to Jensen's inequality",
+  "answer": "Certainly! The variational lower bound, also known as the evidence lower bound (ELBO) in some contexts, is a fundamental concept used in probabilistic machine learning, particularly in the Variational Inference approach. It provides a way to approximate complex posterior distributions by minimizing the difference between them and a simpler distribution.\n\n### Variational Lower Bound\n\nThe variational lower bound arises from approximating an intractable posterior distribution \\( p(z \\mid x) \\), where \\( z \\) are latent variables and \\( x \\) is observed data. Instead of directly finding this posterior, we approximate it with another probability distribution \\( q(z; \\lambda) \\), which has parameters \\( \\lambda \\).\n\nThe goal of variational inference is to find the best approximation in a family of distributions indexed by \\( \\lambda \\). The key idea here is that minimizing the difference between the true posterior and our approximating distribution can be formulated as maximizing a lower bound on the log-likelihood of the observed data.\n\nMathematically, we consider the marginal likelihood \\( p(x) \\), which we want to maximize:\n\n\\[ p(x) = \\int p(x, z) dz. \\]\n\nWe approximate this with:\n\n\\[ q(z; \\lambda) \\approx p(z \\mid x). \\]\n\nThe evidence lower bound (ELBO) is defined as follows:\n\n\\[ \\mathcal{L}(\\lambda) = \\mathbb{E}_{q(z; \\lambda)}[\\log p(x, z)] - \\mathbb{E}_{q(z; \\lambda)}[\\log q(z; \\lambda)]. \\]\n\nThis can be decomposed into two parts:\n1. The expected log joint: \\( \\mathbb{E}_{q(z; \\lambda)}[\\log p(x, z)] = \\int q(z; \\lambda) \\log p(x, z) dz \\).\n2. The negative KL divergence (KL term): \\( -\\mathbb{E}_{q(z; \\lambda)}[\\log q(z; \\lambda)]. \\)\n\nSo the ELBO can be written as:\n\n\\[ \\mathcal{L}(\\lambda) = \\int q(z; \\lambda) \\left( \\log p(x, z) - \\log q(z; \\lambda) \\right) dz. \\]\n\nThis expression is the lower bound for \\( \\log p(x) \\), because of Jensen's inequality.\n\n### Connection to Jensen's Inequality\n\nJensen's inequality is a key ingredient in understanding why this lower bound holds. Jensen's inequality states that for a convex function \\( f \\):\n\n\\[ f\\left(\\mathbb{E}_X[X]\\right) \\leq \\mathbb{E}_X[f(X)]. \\]\n\nFor our purposes, we use the concave logarithm function:\n\n\\[ \\log(\\cdot) : (0, +\\infty) \\to (-\\infty, 0]. \\]\n\nThe negative log of the posterior probability is convex in \\( z \\):\n\n\\[ -\\log q(z; \\lambda). \\]\n\nUsing Jensen's inequality with a convex function \\( -\\log q(z; \\lambda) \\), we get:\n\n\\[ -\\mathbb{E}_q[\\log q(z; \\lambda)] = -\\int q(z; \\lambda) \\log q(z; \\lambda) dz \\geq -\\log\\left(\\int q(z; \\lambda) q(z; \\lambda) dz\\right) = -\\log 1 = 0. \\]\n\nSimilarly, the expected log joint probability term is:\n\n\\[ \\mathbb{E}_q[\\log p(x, z)] = \\int q(z; \\lambda) \\log p(x, z) dz. \\]\n\nSince \\( \\log p(x, z) = \\log p(x \\mid z)p(z) \\), and using the fact that \\( \\int q(z; \\lambda) dz = 1 \\):\n\n\\[ \\mathbb{E}_q[\\log p(x, z)] \\geq \\log p(x). \\]\n\nCombining these bounds, we get:\n\n\\[ \\mathcal{L}(\\lambda) = \\mathbb{E}_{q(z; \\lambda)}[\\log p(x, z)] - \\mathbb{E}_{q(z; \\lambda)}[\\log q(z; \\lambda)] \\geq \\log p(x). \\]\n\nThus,\n\n\\[ \\log p(x) \\leq \\mathcal{L}(\\lambda), \\]\n\nwhich states that the ELBO is always a lower bound on the log-likelihood of the observed data.\n\n### Summary\n\nIn summary, the variational lower bound (ELBO) is a way to approximate intractable posteriors by maximizing a lower bound on the log-likelihood. This bound is derived using Jensen's inequality and provides a principled approach to optimization in probabilistic models.",
+  "nodes_used": [
+    "machine_learning",
+    "statistical_learning_theory"
+  ],
+  "citations": [
+    {
+      "title": "Introduction to Artificial Intelligence \u2013 Engineering AI Agents",
+      "url": "https://pantelis.github.io/courses/ai/in-person.html",
+      "type": "web"
+    },
+    {
+      "title": "Foundations \u2013 Engineering AI Agents",
+      "url": "https://pantelis.github.io/book/foundations/index.html",
+      "type": "web"
+    }
+  ],
+  "mode": "local",
+  "source": "nano-graphrag"
+}

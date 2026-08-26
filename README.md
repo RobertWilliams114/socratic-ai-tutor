@@ -1,472 +1,174 @@
-# Erica AI Tutor - GraphRAG-based Intelligent Tutoring System
+# Socratic
 
-**Student:** Robert Williams
-**Course:** CS 370
-**Project:** Erica - AI-Powered Course Tutor with Prerequisite Checking
+**A GraphRAG tutor that refuses to answer until you understand the prerequisites.**
 
----
+Most RAG chatbots answer whatever you ask. Socratic doesn't. Ask it to explain AI agents and it first walks the concept graph backwards, finds that you need machine learning and reinforcement learning first, generates a comprehension question for each, evaluates your free-text answer with an LLM, and only then gives you the full explanation — built up in order.
 
-## Quick Start
-
-### Prerequisites
-
-- **Python 3.11+**
-- **Ollama** with models:
-  - `qwen2.5:latest` (LLM)
-  - `nomic-embed-text` (embeddings)
-
-### Installation
-
-```bash
-# 1. Install Ollama (if not installed)
-# Download from: https://ollama.ai
-
-# 2. Pull required models
-ollama pull qwen2.5:latest
-ollama pull nomic-embed-text
-
-# 3. Install Python dependencies
-cd project
-pip install -e .
-
-# 4. Verify Ollama is running
-curl http://localhost:11434/api/tags
-```
-
-### Run the System
-
-```bash
-# Option 1: Use notebooks (RECOMMENDED for grading)
-jupyter notebook notebooks/
-
-# Option 2: Command-line interface
-python -m erica.main
-
-# Option 3: Quick start script
-python quickstart.py
-```
+Runs entirely on local models. No API keys, no data leaving the machine.
 
 ---
 
-## System Architecture
-
-### Hybrid GraphRAG Design
+## What it looks like
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    ERICA AI TUTOR                            │
-├─────────────────────────────────────────────────────────────┤
-│                                                               │
-│  ┌──────────────────┐         ┌─────────────────────────┐   │
-│  │  nano-graphrag   │         │  Custom Concept Graph   │   │
-│  │  ─────────────────         │  ───────────────────────   │
-│  │  • Document      │         │  • Concepts            │   │
-│  │    indexing      │         │  • Prerequisites       │   │
-│  │  • Entity        │    +    │  • Examples            │   │
-│  │    extraction    │         │  • Difficulty levels   │   │
-│  │  • Vector DB     │         │  • Scaffolding logic   │   │
-│  └──────────────────┘         └─────────────────────────┘   │
-│                                                               │
-│  ┌───────────────────────────────────────────────────────┐   │
-│  │         Tutoring Engine (Prerequisite Checking)      │   │
-│  │  ────────────────────────────────────────────────────────   │
-│  │  • Detect prerequisite chains                        │   │
-│  │  • Generate understanding check questions            │   │
-│  │  • Evaluate student responses                        │   │
-│  │  • Track learning progress                           │   │
-│  └───────────────────────────────────────────────────────┘   │
-│                                                               │
-│  ┌───────────────────────────────────────────────────────┐   │
-│  │              Interactive Chat Interface               │   │
-│  │  ────────────────────────────────────────────────────────   │
-│  │  • Terminal-based chat                                │   │
-│  │  • Learning path visualization                        │   │
-│  │  • Progress tracking                                  │   │
-│  └───────────────────────────────────────────────────────┘   │
-│                                                               │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-## Installation
-
-### Step 1: Environment Setup
-
-```bash
-# Navigate to project directory
-cd project
-
-# Install dependencies
-pip install -e .
-
-# This installs:
-# - nano-graphrag (GraphRAG implementation)
-# - networkx (graph algorithms)
-# - pydantic (data validation)
-# - beautifulsoup4 (web scraping)
-# - PyPDF2, python-pptx (document processing)
-# - openai (Ollama API client)
-# - rich (terminal UI)
-# - jupyter (notebooks)
-```
-
-### Step 2: Verify Ollama
-
-```bash
-# Check Ollama is running
-ollama list
-
-# Should show:
-# qwen2.5:latest
-# nomic-embed-text
-```
-
-### Step 3: Configuration
-
-The project uses default configurations. No `.env` file is required unless you want to customize:
-
-```bash
-# Optional: Create .env from template
-cp .env.example .env
-
-# Defaults (already configured):
-# - LLM: qwen2.5:latest
-# - Embeddings: nomic-embed-text
-# - Ollama URL: http://localhost:11434
-```
-
----
-
-## Running the Notebooks
-
-### IMPORTANT: Run notebooks in ORDER
-
-The notebooks build on each other and must be executed sequentially:
-
-### Notebook 1: Data Ingestion
-
-```bash
-jupyter notebook notebooks/01_data_ingestion.ipynb
-```
-
-**What it does:**
-- Scrapes course website (https://pantelis.github.io/courses/ai/in-person.html)
-- Processes web pages, PDFs(I checked even though there weren't any), and slides(Same as PDFs)
-- Stores raw content in `data/raw/`
-- Creates `data/processed/ingestion_manifest.json`
-
-**Expected output:**
-- ~5 resources ingested
-- Manifest file with URLs and metadata
-
-### Notebook 2: Knowledge Graph Construction
-
-```bash
-jupyter notebook notebooks/02_nano_graphrag_integration.ipynb
-```
-
-**What it does:**
-- Builds nano-graphrag index from ingested documents
-- Extracts concepts, examples, and relationships using LLM
-- Creates hybrid graph in `data/hybrid_graph/`
-- Generates graph statistics
-
-**Expected output:**
-- 20 concepts extracted
-- 4 prerequisite relationships
-- 5 resources indexed
-- 38 total edges in graph
-
-### Notebook 3: Evaluation Queries
-
-```bash
-jupyter notebook notebooks/03_evaluation_queries.ipynb
-```
-
-**What it does:**
-- Tests 3 required evaluation queries
-- Demonstrates scaffolded answer generation
-- Shows concept identification and resource citations
-- Saves results to `data/evaluation/`
-
-**Expected output:**
-- 3 JSON files with query results
-- Answers in English with proper citations
-- Concepts and resources identified
-
----
-
-## Using the Chat Interface
-
-### Start the Interface
-
-```bash
-python -m erica.main
-```
-
-### Example Session
-
-```
-Loading hybrid knowledge graph from data/hybrid_graph...
-Loaded knowledge graph with 20 concepts, 5 resources, 1 examples
-
-Running in tutoring mode (with prerequisite checks)
-
-┌─────────────────────────────────────────────────────────┐
-│ Welcome to Erica - Your AI Course Tutor                 │
-│                                                          │
-│ How I teach:                                             │
-│ - I'll check if you understand prerequisites first      │
-│ - I'll ask questions to gauge your understanding        │
-│ - I'll build your knowledge step-by-step               │
-└─────────────────────────────────────────────────────────┘
-
 You: Explain AI agents
 
-Erica:
+Socratic:
 Before we dive into AI Agents, I want to make sure you understand
 the foundational concepts first.
 
 To fully grasp AI Agents, you should understand:
-1. Machine Learning
-2. Reinforcement Learning
-
-Let's start with the first concept.
+  1. Machine Learning
+  2. Reinforcement Learning
 
 Quick check: Can you give an example of how machine learning is used?
 
-You: Machine learning is used in recommendation systems like Netflix,
-     where algorithms learn from viewing history to suggest shows.
+You: Recommendation systems like Netflix, where the algorithm learns
+     from viewing history to suggest shows.
 
-Erica:
+Socratic:
 ✓ Excellent! You understand how ML applies to real-world systems.
 
 Next prerequisite check:
-
-Reinforcement Learning (RL)
-How do RL agents learn through interaction with their environment?
+Reinforcement Learning — how do RL agents learn through interaction
+with their environment?
 
 You: They try actions, get rewards or penalties, and learn which
      actions lead to better outcomes over time.
 
-Erica:
+Socratic:
 ✓ Perfect! You've captured the core RL learning mechanism.
 
-Great! Now you're ready for the full explanation.
-
-[Provides detailed explanation of AI Agents...]
+Great — now you're ready for the full explanation.
+[detailed explanation of AI Agents, with citations]
 
 ✓ Concepts covered: machine_learning, reinforcement_learning, ai_agents
 ```
 
-### Available Commands
-
-| Command | Description |
-|---------|-------------|
-| Normal questions | Ask about any AI topic |
-| `path <topic>` | Show learning path with prerequisites |
-| `reset` | Clear understanding memory |
-| `quit` or `exit` | End session |
-
-### Example: Learning Path
-
-```
-You: path ai_agents
-
-Learning Path for AI Agents:
-
-  ○ 1. Machine Learning ⭐⭐⭐
-  ○ 2. Reinforcement Learning (RL) ⭐⭐⭐⭐
-  ○ 3. AI Agents ⭐⭐⭐⭐
-
-You've mastered 0/3 concepts
-```
+Other commands: `path <topic>` shows the full prerequisite chain and how much of it you've mastered; `reset` clears your progress; `quit` exits.
 
 ---
 
-## Key Features
+## How it works
 
-### 1. Prerequisite Checking
+Socratic runs two retrieval systems side by side and merges them at query time.
 
-**How it works:**
-1. Student asks about a complex topic (e.g., "AI Agents")
-2. System checks prerequisite chain: AI Agents → RL → ML
-3. Identifies missing prerequisites
-4. Generates understanding check questions
-5. Evaluates student responses using LLM
-6. Only proceeds when prerequisites are understood
-
-**Implementation:**
-- `src/erica/query/tutoring_engine.py` - Core logic
-- `src/erica/chat/tutoring_interface.py` - Interactive flow
-- Uses NetworkX for graph traversal
-- LLM-based question generation and evaluation
-
-### 2. Hybrid GraphRAG
-
-**nano-graphrag component:**
-- Lightweight GraphRAG implementation
-- Entity extraction from documents
-- Community detection
-- Vector-based retrieval
-
-**Custom graph component:**
-- Concept hierarchy with difficulty levels
-- Prerequisite relationships (`prereq_of` edges)
-- Examples and worked solutions
-- Resource citations with spans
-
-### 3. Scaffolded Learning
-
-**Answer generation follows:**
-1. Check prerequisites
-2. Explain simpler concepts first
-3. Build to more complex ideas
-4. Provide examples
-5. Cite resources for further reading
-
-### 4. Progress Tracking
-
-**System tracks:**
-- Which concepts student understands
-- Learning paths for each topic
-- Session history
-- Can reset and start fresh
-
----
-
-## Technical Details
-
-### Knowledge Graph Schema
-
-```json
-{
-  "concepts": {
-    "concept_id": {
-      "id": "machine_learning",
-      "title": "Machine Learning",
-      "difficulty": 3,
-      "aliases": ["ML", "machine-learning"],
-      "definitions": ["Systems that learn from data..."]
-    }
-  },
-  "resources": [
-    {
-      "id": "resource_id",
-      "title": "Introduction to AI",
-      "type": "web",
-      "url": "https://...",
-      "span": "Section 2.1",
-      "content": "..."
-    }
-  ],
-  "examples": [...],
-  "edges": [
-    {
-      "source_id": "machine_learning",
-      "target_id": "reinforcement_learning",
-      "relation_type": "prereq_of"
-    }
-  ]
-}
+```
+   Course materials (web pages, PDFs, slides)
+                    │
+            Ingestion pipeline
+                    │
+        ┌───────────┴────────────┐
+        │                        │
+   nano-graphrag          Custom concept graph
+   ─────────────          ───────────────────
+   entity extraction      concepts + difficulty
+   community detection    prereq_of edges
+   vector retrieval       worked examples
+        │                 cited source spans
+        └───────────┬────────────┘
+                    │
+            Tutoring engine
+     (traverse prereqs → generate check
+      questions → evaluate answers → gate)
+                    │
+            Terminal chat interface
 ```
 
-### Evaluation Query Format
+**Why hybrid?** nano-graphrag is good at "find me relevant text about X" but has no notion of *pedagogical order*. The custom NetworkX graph adds what teaching actually needs: difficulty ratings, `prereq_of` relationships, and worked examples. The tutoring engine walks that second graph to decide what to ask before it lets the first one answer.
 
-Each query result includes:
+### Knowledge graph, as built
 
-```json
-{
-  "query": "How do attention mechanisms work in transformers?",
-  "answer": "Attention mechanisms are crucial components...",
-  "nodes_used": ["natural_language_processing", "language_models"],
-  "citations": [
-    {
-      "title": "Resource Title",
-      "url": "https://...",
-      "type": "web"
-    }
-  ],
-  "mode": "local",
-  "source": "nano-graphrag"
-}
-```
+| | |
+|---|---|
+| Concepts | 20 |
+| Resources | 5 |
+| Worked examples | 1 |
+| Edges | 59 — of which **25 are `prereq_of`** |
+| nano-graphrag entity graph | 113 nodes, 41 edges |
 
-### Prerequisites in Graph
-
-Current prerequisite relationships:
-1. Machine Learning → Natural Language Processing
-2. Machine Learning → Reinforcement Learning
-3. Reinforcement Learning → AI Agents
-4. Optimization Algorithms → Logistic Regression
+Edge types: `prereq_of`, `explains`, `exemplifies`, `contrasts_with`, `is_a`, `part_of`.
 
 ---
 
+## Quickstart
 
-## Evaluation Queries
-
-The three required evaluation queries test different aspects:
-
-### Query 1: Attention Mechanisms in Transformers
-**Tests:** Code examples, NLP concepts, technical depth
-
-### Query 2: CLIP Architecture
-**Tests:** Computer vision, multimodal learning, architecture explanation
-
-### Query 3: Variational Lower Bound
-**Tests:** Mathematical concepts, theoretical foundations, Jensen's inequality
-
-All three queries demonstrate:
-- ✅ Scaffolded answers (simple → complex)
-- ✅ Concept identification from knowledge graph
-- ✅ Resource citations with URLs
-- ✅ Technical accuracy
-- ✅ English-language responses
-
----
-
-## Running the Complete System
-
-### Full Workflow
+**Requirements:** Python 3.10–3.13 (3.12 recommended), [Ollama](https://ollama.com), ~5 GB disk for models.
 
 ```bash
-# 1. Setup
-cd project
-pip install -e .
+# 1. Models
+ollama pull qwen2.5
+ollama pull nomic-embed-text
 
-# 2. Run ingestion
-jupyter notebook notebooks/01_data_ingestion.ipynb
-# Execute all cells
+# 2. Environment  (uv recommended; python -m venv works too)
+uv venv --python 3.12
+source .venv/bin/activate
+uv pip install -e .
 
-# 3. Build knowledge graph
-jupyter notebook notebooks/02_nano_graphrag_integration.ipynb
-# Execute all cells
-
-# 4. Run evaluation queries
-jupyter notebook notebooks/03_evaluation_queries.ipynb
-# Execute all cells
-
-# 5. Test chat interface
-python -m erica.main
-
-# 6. Try prerequisite checking
-# When prompted, ask: "Explain AI agents"
-# Follow the prerequisite questions
+# 3. Run
+python -m socratic.main
 ```
+
+> **Note on Python version:** the dependency set does not yet support 3.14. If your system Python is newer, `uv venv --python 3.12` will fetch a suitable interpreter for you.
+
+### Building the knowledge base
+
+**The repository ships the concept graph but not the source corpus**, because the ingested material is third-party course content that isn't mine to redistribute. `data/graph/knowledge_graph.json` contains the full graph structure — every concept, edge, and citation URL — with the scraped page bodies removed.
+
+To build a runnable knowledge base from your own sources, run the notebooks in order:
+
+| Notebook | Produces |
+|---|---|
+| `00_setup_and_test.ipynb` | Verifies Ollama connectivity |
+| `01_data_ingestion.ipynb` | Scrapes/parses sources → `data/raw/`, `data/processed/` |
+| `02_nano_graphrag_integration.ipynb` | Builds the hybrid graph → `data/hybrid_graph/` |
+| `03_evaluation_queries.ipynb` | Runs the evaluation queries → `data/evaluation/` |
+
+Point `01_data_ingestion.ipynb` at your own URLs and the rest of the pipeline follows.
 
 ---
 
-## Submission Contents
+## Evaluation
 
-This submission includes:
+Three queries chosen to exercise different retrieval paths. Results are checked in under `data/evaluation/`.
 
-1. ✅ All source code (`src/erica/`)
-2. ✅ All Jupyter notebooks (`notebooks/`)
-3. ✅ All deliverable files (`data/`)
-4. ✅ Documentation (`README.md`, `PROJECT_REPORT.md`, `DELIVERABLES.md`)
-5. ✅ Configuration files (`pyproject.toml`, `docker-compose.yml`, etc.)
-6. ✅ Working chat interface
-7. ✅ Prerequisite checking fully implemented
-8. ✅ Three evaluation queries with results
+| Query | Tests |
+|---|---|
+| How do attention mechanisms work in transformers? | Technical depth, code examples |
+| What is the CLIP architecture? | Multimodal / vision concepts |
+| Explain the variational lower bound and Jensen's inequality | Mathematical reasoning |
 
+Each result records the answer, the graph nodes used, and resource citations with URLs — so retrieval is auditable rather than a black box.
+
+---
+
+## Project layout
+
+```
+src/socratic/
+├── ingestion/   scraper.py, processor.py      web, PDF, PPTX → text
+├── graph/       builder.py, hybrid_builder.py, nano_graphrag_wrapper.py, storage.py
+├── query/       engine.py, hybrid_engine.py, tutoring_engine.py
+├── chat/        interface.py, tutoring_interface.py
+└── utils/       llm_client.py
+```
+
+21 modules, ~2,600 lines. `tutoring_engine.py` holds the prerequisite logic; `hybrid_builder.py` is where the two graphs get merged.
+
+---
+
+## Stack
+
+Python 3.12 · nano-graphrag · NetworkX · Pydantic · Rich · BeautifulSoup / pypdf / python-pptx · Ollama (Qwen2.5 + nomic-embed-text)
+
+## Limitations
+
+- The demo corpus is small (5 documents, 20 concepts) — enough to exercise every code path, not a broad knowledge base
+- Prerequisite edges are LLM-extracted and not hand-verified; some are arguable
+- Answer evaluation is LLM-judged, so a confidently wrong answer can occasionally pass
+- Terminal-only; no web UI
+- `data/graph/knowledge_graph.json` is a snapshot and won't auto-refresh if you rebuild the graph
+
+## Provenance
+
+Originally built as the capstone for CS 370 (Introduction to AI) at NJIT, Fall 2025; cleaned up and extended since. The hybrid-graph design, prerequisite-gating engine, and tutoring interface are my own.

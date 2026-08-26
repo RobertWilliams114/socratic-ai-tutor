@@ -9,14 +9,14 @@ from typing import Any
 from nano_graphrag import GraphRAG, QueryParam
 from nano_graphrag._utils import wrap_embedding_func_with_attrs
 
-from erica.config import settings
-from erica.models import KnowledgeGraph, Resource
+from socratic.config import settings
+from socratic.models import KnowledgeGraph, Resource
 
 logger = logging.getLogger(__name__)
 
 
 class NanoGraphRAGWrapper:
-    """Wrapper around nano-graphrag for Erica AI Tutor.
+    """Wrapper around nano-graphrag for Socratic AI Tutor.
 
     This integrates nano-graphrag as the core GraphRAG engine while maintaining
     compatibility with our custom knowledge graph models.
@@ -195,7 +195,7 @@ Content:
         Args:
             kg: Knowledge graph with custom concepts, examples, etc.
         """
-        metadata_path = self.working_dir / "erica_metadata.json"
+        metadata_path = self.working_dir / "socratic_metadata.json"
 
         with open(metadata_path, "w", encoding="utf-8") as f:
             f.write(kg.model_dump_json(indent=2))
@@ -208,7 +208,7 @@ Content:
         Returns:
             Knowledge graph if metadata exists, None otherwise
         """
-        metadata_path = self.working_dir / "erica_metadata.json"
+        metadata_path = self.working_dir / "socratic_metadata.json"
 
         if not metadata_path.exists():
             return None

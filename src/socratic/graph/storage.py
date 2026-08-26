@@ -5,7 +5,7 @@ from typing import Any
 
 import networkx as nx
 
-from erica.models import KnowledgeGraph, RelationType
+from socratic.models import KnowledgeGraph, RelationType
 
 logger = logging.getLogger(__name__)
 

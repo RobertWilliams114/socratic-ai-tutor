@@ -1,4 +1,4 @@
-"""Chat interface for Erica tutor."""
+"""Chat interface for Socratic tutor."""
 
 from .interface import ChatInterface
 from .tutoring_interface import TutoringInterface

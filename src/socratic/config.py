@@ -1,4 +1,4 @@
-## Configuration for Erica
+## Configuration for Socratic
 
 import os
 from pathlib import Path
@@ -28,7 +28,7 @@ class Settings(BaseSettings):
 
     ## Database Configuration
     mongo_uri: str = Field(default="mongodb://localhost:27017", env="MONGO_URI")
-    mongo_db_name: str = Field(default="erica_tutor", env="MONGO_DB_NAME")
+    mongo_db_name: str = Field(default="socratic_tutor", env="MONGO_DB_NAME")
     use_file_storage: bool = Field(default=True, env="USE_FILE_STORAGE")
 
     ## GraphRAG Configuration

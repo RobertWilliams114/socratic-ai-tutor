@@ -1,4 +1,4 @@
-## Erica interface that checks for prerequisite understanding
+## Socratic interface that checks for prerequisite understanding
 
 import logging
 from typing import Any
@@ -8,8 +8,8 @@ from rich.markdown import Markdown
 from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn
 
-from erica.models import KnowledgeGraph
-from erica.query.tutoring_engine import TutoringEngine
+from socratic.models import KnowledgeGraph
+from socratic.query.tutoring_engine import TutoringEngine
 
 logger = logging.getLogger(__name__)
 console = Console()
@@ -25,7 +25,7 @@ class TutoringInterface:
 
     ## This function displays the welcome message when you first enter the interface
     def display_welcome(self) -> None:
-        welcome = """# Welcome to Erica - Your AI Course Tutor
+        welcome = """# Welcome to Socratic - Your AI Course Tutor
 
 I'm here to help you truly understand AI concepts, not just memorize them!
 
@@ -55,7 +55,7 @@ Let's start learning!
     def display_answer(self, result: dict[str, Any]) -> None:
 
         ## Display answer
-        console.print("\n[bold cyan]Erica:[/bold cyan]")
+        console.print("\n[bold cyan]Socratic:[/bold cyan]")
         console.print(Markdown(result["answer"]))
 
         ## If this requires prerequisite checks, show the questions
@@ -115,7 +115,7 @@ Let's start learning!
             )
 
         ## Display feedback
-        console.print("\n[bold cyan]Erica:[/bold cyan]")
+        console.print("\n[bold cyan]Socratic:[/bold cyan]")
         if evaluation["understood"]:
             console.print(f"[green]✓[/green] {evaluation['feedback']}")
 

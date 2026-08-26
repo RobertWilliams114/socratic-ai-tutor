@@ -4,9 +4,9 @@ import json
 import logging
 from pathlib import Path
 
-from erica.config import settings
-from erica.models import Concept, Edge, Example, KnowledgeGraph, RelationType, Resource
-from erica.utils.llm_client import llm_client
+from socratic.config import settings
+from socratic.models import Concept, Edge, Example, KnowledgeGraph, RelationType, Resource
+from socratic.utils.llm_client import llm_client
 
 logger = logging.getLogger(__name__)
 

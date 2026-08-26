@@ -1,4 +1,4 @@
-# Erica AI Tutor - Project Report
+# Socratic AI Tutor - Project Report
 
 **Student:** [Your Name]
 **Course:** CS 370 - Introduction to AI
@@ -6,7 +6,7 @@
 
 ## Project Overview
 
-This project implements "Erica," an AI-powered course tutor using GraphRAG (Graph Retrieval-Augmented Generation) technology. The system can answer student questions about AI concepts using a knowledge graph built from course materials.
+This project implements "Socratic," an AI-powered course tutor using GraphRAG (Graph Retrieval-Augmented Generation) technology. The system can answer student questions about AI concepts using a knowledge graph built from course materials.
 
 ## Milestones
 
@@ -29,7 +29,7 @@ This project implements "Erica," an AI-powered course tutor using GraphRAG (Grap
 **How to run:**
 ```bash
 docker-compose up -d
-docker exec -it erica-ollama ollama pull qwen2.5:latest
+docker exec -it socratic-ollama ollama pull qwen2.5:latest
 ```
 
 ---
@@ -46,8 +46,8 @@ docker exec -it erica-ollama ollama pull qwen2.5:latest
 - Created manifest of all ingested URLs
 
 **Files:**
-- `src/erica/ingestion/scraper.py` - Web scraping
-- `src/erica/ingestion/processor.py` - PDF/PPTX processing
+- `src/socratic/ingestion/scraper.py` - Web scraping
+- `src/socratic/ingestion/processor.py` - PDF/PPTX processing
 - `data/processed/ingestion_manifest.json` - **URL manifest (deliverable)**
 - `data/processed/ingested_resources.json` - All extracted content
 - `notebooks/01_data_ingestion.ipynb` - Ingestion workflow
@@ -72,9 +72,9 @@ See `data/processed/ingestion_manifest.json` for complete list of URLs.
 - Generated graph visualizations
 
 **Files:**
-- `src/erica/graph/builder.py` - Custom graph builder
-- `src/erica/graph/nano_graphrag_wrapper.py` - nano-graphrag integration
-- `src/erica/graph/hybrid_builder.py` - Hybrid approach
+- `src/socratic/graph/builder.py` - Custom graph builder
+- `src/socratic/graph/nano_graphrag_wrapper.py` - nano-graphrag integration
+- `src/socratic/graph/hybrid_builder.py` - Hybrid approach
 - `data/graph/knowledge_graph.json` - **Custom concept graph (deliverable)**
 - `data/graph/nano_graphrag/` - nano-graphrag storage
 - `notebooks/02_nano_graphrag_integration.ipynb` - Graph construction workflow
@@ -98,10 +98,10 @@ See `data/processed/ingestion_manifest.json` for complete list of URLs.
 - Saved results with nodes used and citations
 
 **Files:**
-- `src/erica/query/hybrid_engine.py` - Hybrid query engine
-- `src/erica/query/tutoring_engine.py` - Tutoring with prerequisite checks
-- `src/erica/chat/tutoring_interface.py` - Interactive chat
-- `src/erica/main.py` - Entry point
+- `src/socratic/query/hybrid_engine.py` - Hybrid query engine
+- `src/socratic/query/tutoring_engine.py` - Tutoring with prerequisite checks
+- `src/socratic/chat/tutoring_interface.py` - Interactive chat
+- `src/socratic/main.py` - Entry point
 - `notebooks/03_evaluation_queries.ipynb` - **Evaluation queries (deliverable)**
 - `data/evaluation/` - Saved query results
 
@@ -207,7 +207,7 @@ jupyter notebook notebooks/03_evaluation_queries.ipynb
 ### Interactive Chat
 
 ```bash
-python -m erica.main
+python -m socratic.main
 ```
 
 ## Challenges and Solutions
@@ -247,4 +247,4 @@ python -m erica.main
 
 ## Conclusion
 
-Erica successfully demonstrates a GraphRAG-based tutoring system that can answer complex AI questions using course materials. The system uses nano-graphrag for document retrieval and a custom concept graph for educational scaffolding, providing a comprehensive learning experience.
+Socratic successfully demonstrates a GraphRAG-based tutoring system that can answer complex AI questions using course materials. The system uses nano-graphrag for document retrieval and a custom concept graph for educational scaffolding, providing a comprehensive learning experience.

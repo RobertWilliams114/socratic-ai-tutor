@@ -1,4 +1,4 @@
-## The chat interface for Erica.
+## The chat interface for Socratic.
 
 import logging
 from typing import Any
@@ -7,13 +7,13 @@ from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
 
-from erica.models import KnowledgeGraph
-from erica.query.engine import QueryEngine
+from socratic.models import KnowledgeGraph
+from socratic.query.engine import QueryEngine
 
 logger = logging.getLogger(__name__)
 console = Console()
 
-## Interactive chat for erica
+## Interactive chat for socratic
 class ChatInterface:
 
     ## This function initializes the chat interface and uses the knowledge base as its only argument
@@ -25,7 +25,7 @@ class ChatInterface:
     ## This function just shows the welcome display for the chat interface
     def display_welcome(self) -> None:
         """Display welcome message."""
-        welcome = """# Welcome to Erica - Your AI Course Tutor
+        welcome = """# Welcome to Socratic - Your AI Course Tutor
 
 I'm here to help you learn about AI concepts. Ask me anything about:
 - Machine learning algorithms
@@ -42,7 +42,7 @@ Type 'quit' or 'exit' to end the session.
     def display_answer(self, result: dict[str, Any]) -> None:
 
         ## Display answer
-        console.print("\n[bold cyan]Erica:[/bold cyan]")
+        console.print("\n[bold cyan]Socratic:[/bold cyan]")
         console.print(Markdown(result["answer"]))
 
         ## Display concepts used

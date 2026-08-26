@@ -2,10 +2,10 @@
 import logging
 from typing import Any
 
-from erica.graph.storage import GraphStorage
-from erica.models import KnowledgeGraph
-from erica.query.engine import QueryEngine
-from erica.utils.llm_client import llm_client
+from socratic.graph.storage import GraphStorage
+from socratic.models import KnowledgeGraph
+from socratic.query.engine import QueryEngine
+from socratic.utils.llm_client import llm_client
 
 logger = logging.getLogger(__name__)
 

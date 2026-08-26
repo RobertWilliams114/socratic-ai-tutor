@@ -3,9 +3,9 @@
 import logging
 from typing import Any
 
-from erica.graph.hybrid_builder import HybridKnowledgeGraphBuilder
-from erica.graph.storage import GraphStorage
-from erica.query.engine import QueryEngine
+from socratic.graph.hybrid_builder import HybridKnowledgeGraphBuilder
+from socratic.graph.storage import GraphStorage
+from socratic.query.engine import QueryEngine
 
 logger = logging.getLogger(__name__)
 

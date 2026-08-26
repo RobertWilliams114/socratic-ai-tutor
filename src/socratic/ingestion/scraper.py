@@ -9,8 +9,8 @@ from urllib.parse import urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup
 
-from erica.config import settings
-from erica.models import Resource, ResourceType
+from socratic.config import settings
+from socratic.models import Resource, ResourceType
 
 logger = logging.getLogger(__name__)
 

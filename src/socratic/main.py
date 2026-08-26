@@ -1,5 +1,5 @@
-## This is how use actually use Erica
-## You just need to run `python -m erica.main`
+## This is how use actually use Socratic
+## You just need to run `python -m socratic.main`
 
 import argparse
 import logging
@@ -8,9 +8,9 @@ from pathlib import Path
 from rich.console import Console
 from rich.logging import RichHandler
 
-from erica.chat import TutoringInterface
-from erica.config import settings
-from erica.graph import HybridKnowledgeGraphBuilder
+from socratic.chat import TutoringInterface
+from socratic.config import settings
+from socratic.graph import HybridKnowledgeGraphBuilder
 
 console = Console()
 
@@ -22,9 +22,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-## This function runs the erica chat interface
+## This function runs the socratic chat interface
 def main():
-    parser = argparse.ArgumentParser(description="Erica AI Tutor - Interactive Learning")
+    parser = argparse.ArgumentParser(description="Socratic AI Tutor - Interactive Learning")
     parser.add_argument(
         "--working-dir",
         type=Path,
@@ -49,7 +49,7 @@ def main():
         builder = HybridKnowledgeGraphBuilder(working_dir=args.working_dir)
 
         ## Check if graph exists
-        metadata_path = args.working_dir / "erica_metadata.json"
+        metadata_path = args.working_dir / "socratic_metadata.json"
         if args.rebuild or not metadata_path.exists():
             console.print(
                 "[yellow]Knowledge graph not found or rebuild requested.[/yellow]"
@@ -73,7 +73,7 @@ def main():
 
         ## Choose interface mode
         if args.no_prerequisite_checks:
-            from erica.chat import ChatInterface
+            from socratic.chat import ChatInterface
             console.print("[yellow]Running in simple mode (no prerequisite checks)[/yellow]\n")
             chat = ChatInterface(kg)
         else:
