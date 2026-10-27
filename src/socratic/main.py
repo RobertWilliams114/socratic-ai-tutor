@@ -84,7 +84,10 @@ def main():
         chat.run()
 
         ## Optionally save conversation
-        save = console.input("\n[cyan]Save conversation? (y/n):[/cyan] ").lower()
+        try:
+            save = console.input("\n[cyan]Save conversation? (y/n):[/cyan] ").lower()
+        except EOFError:
+            save = "n"
         if save == "y":
             output_path = Path("conversation.json")
             chat.save_conversation(str(output_path))
