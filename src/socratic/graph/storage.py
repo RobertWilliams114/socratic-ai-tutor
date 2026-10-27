@@ -106,6 +106,27 @@ class GraphStorage:
         logger.info(f"Extracted subgraph with {subgraph.number_of_nodes()} nodes")
         return subgraph
 
+    def _collect_prerequisites(self, concept_id: str, seen: set[str]) -> list[str]:
+        """Depth-first walk of prereq_of edges, appending each concept after its own
+        prerequisites.
+
+        ``seen`` is shared across the entire traversal, not per call, so a concept
+        reachable by more than one path is visited exactly once.
+        """
+        prereqs = []
+
+        for source, _target, data in self.graph.in_edges(concept_id, data=True):
+            if data.get("relation") != RelationType.PREREQ_OF.value:
+                continue
+            if source in seen:
+                continue
+
+            seen.add(source)
+            prereqs.extend(self._collect_prerequisites(source, seen))
+            prereqs.append(source)
+
+        return prereqs
+
     def get_prerequisite_chain(self, concept_id: str) -> list[str]:
         """Get ordered list of prerequisite concepts.
 
@@ -115,16 +136,8 @@ class GraphStorage:
         Returns:
             List of concept IDs in prerequisite order (leaf to target)
         """
-        prereqs = []
+        return self._collect_prerequisites(concept_id, set())
 
-        # Find all nodes that have prereq_of edge to this concept
-        for source, target, data in self.graph.in_edges(concept_id, data=True):
-            if data.get("relation") == RelationType.PREREQ_OF.value:
-                # Recursively get prerequisites
-                prereqs.extend(self.get_prerequisite_chain(source))
-                prereqs.append(source)
-
-        return prereqs
 
     def get_resources_for_concept(self, concept_id: str) -> list[dict[str, Any]]:
         """Get all resources that explain a concept.
