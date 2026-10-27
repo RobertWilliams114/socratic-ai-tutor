@@ -89,6 +89,12 @@ Socratic runs two retrieval systems side by side and merges them at query time.
 
 Edge types: `prereq_of`, `explains`, `exemplifies`, `contrasts_with`, `is_a`, `part_of`.
 
+### Design decisions
+
+**Gating answers instead of just ranking them.** The obvious way to build a tutor is to retrieve the best passage and return it. That produces a search engine with a friendly tone — it will happily explain backpropagation to someone who doesn't know what a gradient is. Socratic inverts the flow: before generating anything, the tutoring engine traverses `prereq_of` edges from the requested concept, generates a comprehension question for each unmet prerequisite, and evaluates the student's free-text answer with the LLM. The explanation is withheld until the chain is satisfied. This makes the concept graph load-bearing rather than decorative — the pedagogy lives in the graph structure, not in the prompt.
+
+**Recording provenance at ingestion, not at answer time.** Every ingested source is written to a manifest with its URL and identifier before any graph construction happens. That means citations are traceable to a specific document and span rather than reconstructed after the fact, and rebuilding the graph can't silently orphan a citation. It also makes it obvious what the corpus actually contains — which matters when the retrieval quality is only ever as good as what went in.
+
 ---
 
 ## Quickstart
@@ -168,6 +174,19 @@ Python 3.12 · nano-graphrag · NetworkX · Pydantic · Rich · BeautifulSoup / 
 - Answer evaluation is LLM-judged, so a confidently wrong answer can occasionally pass
 - Terminal-only; no web UI
 - `data/graph/knowledge_graph.json` is a snapshot and won't auto-refresh if you rebuild the graph
+
+## Roadmap
+
+- Ingest a broader corpus — lecture video transcripts and papers, not just web pages
+- Improve concept-extraction precision so prerequisite edges need less manual review
+- Generate practice questions per concept, not only prerequisite checks
+- Persistent student profiles, so mastery survives between sessions
+- A web interface
+
+## References
+
+- [nano-graphrag](https://github.com/gusye1234/nano-graphrag) — the retrieval layer this builds on
+- [Qwen2.5](https://qwenlm.github.io/blog/qwen2.5/) and [nomic-embed-text](https://www.nomic.ai/blog/posts/nomic-embed-text-v1) — the local models used
 
 ## Provenance
 
